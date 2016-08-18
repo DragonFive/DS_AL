@@ -14,57 +14,43 @@
 #include <iostream>
 using namespace std;
 
-template<class DataType>//数据类型不定
-struct Node//结点结构； 
+//链表节点结构; 
+struct ListNode
 {
-	 DataType data=NULL;
-	 Node * left = NULL;
-	 Node * right = NULL; 
-	 Node(DataType d):data(d){}
-	 void addlChild(Node<DataType> *const add)//添加左孩子; 
-	{
-		if(left == NULL)
-			left = add;
-		else
-			left->addlChild(add); 
-	}
-	void addRChild(Node<DataType> *const add)//添加左孩子; 
-	{
-		if(right == NULL)
-			right = add;
-		else
-			right->addRChild(add); 
-	}
-	 
-};
-template<class DataType>//数据类型不定
-class BinTree
+	int val; //数据；
+	ListNode * next;
+	ListNode(int _val,ListNode *_next=NULL):val(_val),next(_next){}
+	
+
+} ;
+
+/*基本操作 翻转链表*/ 
+//反转链表 
+
+/*下面是第一个版本,需要注意两点
+   1. 原起始节点next=null
+   2.  最后头结点应该指向最后; 
+ */ 
+ListNode * ReverseList(ListNode *head)
 {
-private:
-	Node<DataType> *root=NULL;
-public:
-	BinTree<DataType>(){
-		root = new Node<int>(0);
-	}//建立一个空树;
-	void addlTree(Node<DataType> *const add)//添加左孩子; 
+	//空链表直接返回; 
+	if(head == NULL)
+		return head;
+	
+	
+	ListNode * pre = head;
+	head = head->next;
+	pre->next = NULL;//这个很重要啊; 
+	while(head!=NULL)
 	{
-
-		root->addlChild(add);
+		post = head->next;
+		head->next = pre;
+		pre = head;
+		head = post;
 	}
-	void addRTree(Node<DataType> *const add)//添加左孩子; 
-	{
-		root->addRChild(add);
-	}
-};
-
-
-int main()
-{
-	BinTree<int> B;
-	Node<int> n1(10);
-	Node<int> n2(20);
-	B.addlTree(&n1);
-	B.addRTree(&n2);
-	return 0;
+	
+	head = pre;//最后让
+	return head;
 }
+
 
