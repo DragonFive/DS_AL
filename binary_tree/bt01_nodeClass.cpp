@@ -76,6 +76,35 @@ ListNode * reverseList(ListNode *head)
 }
 
 
+//下面判断一个单链表是否有环；
+
+bool had_circle(ListNode * head)
+{
+	ListNode * fast = head ,slow = head;
+	while(fast!=NULL)
+	{
+		//注意如果没有环，fast在最后一步不一定能走两步；
+		if(fast->next!=NULL)
+		{
+			fast = fast->next->next;
+			slow = slow->next;
+			if(fast == slow)
+			{
+				return true;
+			}	
+		}
+		else
+		{
+			return false;
+		}	 
+	}
+	return false;
+} 
+ 
+
+
+
+
 // 下面是双向链表
 struct DListNode
 {
