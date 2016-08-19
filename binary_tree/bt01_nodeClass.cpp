@@ -34,7 +34,7 @@ struct ListNode
    ËùÒÔÎÒÃÇ¿ÉÒÔ×Ü½áµÃ³ö£ºÈç¹ûÒª±éÀú²Ù×÷Á´±í£¬ÆäÊµÂß¼­ÉÏÖ»ĞèÒª×¢Òâ
    ÑµÁ·ÀïÃæÃ¿Ò»²½µÄ²Ù×÷£¬¶øÔÚÏ¸½ÚÉÏ¿ªÍ·ºÍ½áÎ²Ò²Òª×¢ÒâÅĞ¶Ï; 
  */ 
-ListNode * ReverseList_1(ListNode *head_1)//ÕâÊÇµÚÒ»°æ ÎÒ×Ô¼ºĞ´µÄ£¬ÆäÊµ´úÂëÓĞĞ©¶à; 
+ListNode * reverseList_1(ListNode *head_1)//ÕâÊÇµÚÒ»°æ ÎÒ×Ô¼ºĞ´µÄ£¬ÆäÊµ´úÂëÓĞĞ©¶à; 
 {
 	
 	ListNode * head = head_1->next;//¿¼ÂÇµ½Í·½áµãµÄ´æÔÚ; 
@@ -62,7 +62,7 @@ ListNode * ReverseList_1(ListNode *head_1)//ÕâÊÇµÚÒ»°æ ÎÒ×Ô¼ºĞ´µÄ£¬ÆäÊµ´úÂëÓĞĞ©¶
 
 //µ¥ÏòÁ´±íµÄ·´×ª2;  
 //ÏÂÃæÕâ¸ö°æ±¾À´×Ô http://algorithm.yuanbin.me/zh-hans/basics_data_structure/linked_list.html
-ListNode * ReverseList(ListNode *head)
+ListNode * reverseList(ListNode *head)
 {
 	ListNode * pre=Null,*post = NULL;
 	while(head)
@@ -77,7 +77,27 @@ ListNode * ReverseList(ListNode *head)
 
 
 // ÏÂÃæÊÇË«ÏòÁ´±í
+struct DListNode
+{
+	DListNode *pre,*next;
+	int val;
+	DListNode(int _val,DlistNode * _pre=NULL,DlistNode *_next=NULL):val(_val),pre(_pre),next(_next){}
+	
+};
 
+//Ê®·Ö¼ò¶ÌµÄÒ»¸ö·´×ªË«ÏòÁ´±íµÄ·½Ê½; 
+DListNode * reverseDList(DListNode* head)
+{
+	DListNode * curr=NULL; 
+	while(head)
+	{
+		curr = head;
+		head = curr->next;
+		curr->next = curr->pre;
+		curr->pre = head;
+	}
+	return curr;
+}
 
 
  
