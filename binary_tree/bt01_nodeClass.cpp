@@ -14,7 +14,7 @@
 #include <iostream>
 using namespace std;
 
-//链表节点结构; 
+//单链表节点结构; 
 struct ListNode
 {
 	int val; //数据；
@@ -25,14 +25,19 @@ struct ListNode
 } ;
 
 /*基本操作 翻转链表*/ 
-//反转链表 
+//反转链表 下面是单向链表的反转;  下面的操作其实是没有考虑头结点的存在; 
 
 /*下面是第一个版本,需要注意两点
    1. 原起始节点next=null
    2.  最后头结点应该指向最后; 
+   
+   所以我们可以总结得出：如果要遍历操作链表，其实逻辑上只需要注意
+   训练里面每一步的操作，而在细节上开头和结尾也要注意判断; 
  */ 
-ListNode * ReverseList(ListNode *head)
+ListNode * ReverseList_1(ListNode *head_1)//这是第一版 我自己写的，其实代码有些多; 
 {
+	
+	ListNode * head = head_1->next;//考虑到头结点的存在; 
 	//空链表直接返回; 
 	if(head == NULL)
 		return head;
@@ -40,7 +45,7 @@ ListNode * ReverseList(ListNode *head)
 	
 	ListNode * pre = head;
 	head = head->next;
-	pre->next = NULL;//这个很重要啊; 
+	pre->next = NULL;//这个很重要啊;原始节点的Next指向NULL 
 	while(head!=NULL)
 	{
 		post = head->next;
@@ -49,8 +54,36 @@ ListNode * ReverseList(ListNode *head)
 		head = post;
 	}
 	
-	head = pre;//最后让
-	return head;
+	//head = pre;//最后让头结点指向最后一个节点; 
+	
+	head_1->next = pre;
+	return head_1;
 }
+
+//单向链表的反转2;  
+//下面这个版本来自 http://algorithm.yuanbin.me/zh-hans/basics_data_structure/linked_list.html
+ListNode * ReverseList(ListNode *head)
+{
+	ListNode * pre=Null,*post = NULL;
+	while(head)
+	{
+		post = head->next;
+		head->next = pre;
+		pre = head;
+		head = post;
+	}
+	return pre;
+}
+
+
+// 下面是双向链表
+
+
+
+ 
+
+
+ 
+
 
 
