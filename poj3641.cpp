@@ -8,9 +8,10 @@
 #include<iostream>
 #include<fstream>
 using namespace std;
+typedef long long ll;
 // 找到那些p不是素数那是却满足条件的数
 // 判断一个数是不是素数
-bool is_prime(long long num)
+bool is_prime(ll num)
 {
     if(num<2)
         return false;
@@ -19,7 +20,7 @@ bool is_prime(long long num)
         return true;
     }
     //int num_yueshu = 0;
-    for(int i=2;i*i<=num;i++)
+    for(ll i=2;i*i<=num;i++)
     {
         if(num%i==0)
         {
@@ -33,7 +34,7 @@ bool is_prime(long long num)
 
 //判断一个数是否满足条件 快速幂运算 
 
-long long quick_mod(int p,int a)
+ll quick_mod(ll p,ll a)
 {
     long long ret = 1;
     long long n = p;
@@ -51,11 +52,11 @@ long long quick_mod(int p,int a)
 
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifndef Oj
     fstream cin("test.txt");
 #endif
 
-    long long p,a;
+    ll p,a;
     while(cin>>p>>a)
     {
         if(p==0 && a==0)
@@ -65,12 +66,11 @@ int main()
             cout<<"no"<<endl;
             continue;
         }
-        long long ret = quick_mod(p,a);
+        ll ret = quick_mod(p,a);
         //cout<<ret<<" ";
         if(ret%p==a%p)
         {
             cout<<"yes"<<endl;
-            continue;
         }
         else
         {
