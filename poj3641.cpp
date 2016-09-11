@@ -52,7 +52,7 @@ ll quick_mod(ll p,ll a)
 
 int main()
 {
-#ifndef Oj
+#ifndef ONLINE_JUDGE
     fstream cin("test.txt");
 #endif
 
