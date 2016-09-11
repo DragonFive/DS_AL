@@ -12,9 +12,11 @@ using namespace std;
 // 判断一个数是不是素数
 bool is_prime(long long num)
 {
+    if(num<2)
+        return false;
     if(num==2)
     {
-        return false;
+        return true;
     }
     //int num_yueshu = 0;
     for(int i=2;i*i<=num;i++)
